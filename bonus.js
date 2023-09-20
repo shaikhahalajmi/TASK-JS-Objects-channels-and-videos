@@ -9,7 +9,10 @@ const channels = require("./channels.json");
  ****************************************************************/
 function totalVideosDuration(channel) {
   // Your code here
-}
+  return channel.videos.reduce((SumDuration , video) => { return SumDuration+video.duration},0);
+};
+console.log(totalVideosDuration(channels[0]));
+
 
 /**************************************************************
  * channelWithMostContent(channels):
@@ -20,7 +23,13 @@ function totalVideosDuration(channel) {
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
 function channelWithMostContent(channels) {
-  // Your code here
+  // Your code here 
+  if(channels.length == 0 )
+    return null;//array is empty
+  channels.sort((channel1,channel2) => { return totalVideosDuration(channel2)- totalVideosDuration(channel1);
+  });
+  return channels[0];//after sort my highest value is in the first element
+ 
 }
 
 /**************************************************************
@@ -32,6 +41,13 @@ function channelWithMostContent(channels) {
  ****************************************************************/
 function longestChannelName(channels) {
   // Your code here
+  if(channels.length == 0 )
+    return null;//array is empty
+  channels.sort( (channel1,channel2) => 
+   (channel2.name.length - channel1.name.length))[0];
+  
+  return channels[0];//after sort my highest value is in the first element
+
 }
 
 // Check your answers by running this file and comparing what it logs
